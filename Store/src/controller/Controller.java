@@ -72,5 +72,5 @@ public class Controller {
 	public SaleDTO scannItem(int ItemID) {
 		return null;
 	}
-
+//Hoppas detta funkar testt
 }
