@@ -17,13 +17,14 @@ public class SaleDTO {
 
 	private Change change;
 
-	//private Amount totalPriceIWithTaxes;
+	private Amount totalPriceIWithTaxes;
 
-	public SaleDTO(Item[] itemList,boolean discountVaild, Amount price, Change change) {
+	public SaleDTO(Item[] itemList,boolean discountVaild, Amount price, Change change,Amount totalPriceWithTaxes) {
 		this.itemList = itemList;
 		this.discountVaild= discountVaild;
 		this.price= price;
 		this.change=change;
+		this.totalPriceIWithTaxes=totalPriceWithTaxes;
 	}
 
 	public Item[] getItems() {

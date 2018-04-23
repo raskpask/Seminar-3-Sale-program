@@ -11,10 +11,12 @@ import integration.SaleDTO;
 public class Sale {
 
 	private Item[] itemList;
+	
+	private int numberOfItems;
 
 	private boolean discountVaild;
 
-	private int recordSaleTime;
+	//private int recordSaleTime;
 
 	private Amount price;
 
@@ -28,13 +30,20 @@ public class Sale {
 
 	//private CashPayment cashPayment;
 
-	private Printer printer;
+	//private Printer printer;
 
-	private ExternalAccountingSystemHandler externalAccountingSystemHandler;
+	//private ExternalAccountingSystemHandler externalAccountingSystemHandler;
 
-	private ExternalInventoryHandler externalInventoryHandler;
+	//private ExternalInventoryHandler externalInventoryHandler;
 
-	public Sale(){
+
+	public Sale(Item[] itemList,boolean discountVaild, Amount price, Change change,Amount totalPriceWithTaxes) {
+		this.itemList = itemList;
+		this.discountVaild= discountVaild;
+		this.price= price;
+		this.change=change;
+		this.totalPriceWithTaxes=totalPriceWithTaxes;
+		
 	}
 	
 	public Item[] getItems() {
@@ -60,10 +69,11 @@ public class Sale {
 
 	}
 
-	public SaleDTO addItem(Item item) {
-		
-		SaleDTO saleDTO= new SaleDTO(this.itemList,this.discountVaild,this.);
-		return saleDTO;
+	public Sale addItem(Item item) {
+		this.itemList[numberOfItems]=item;
+		this.numberOfItems++;
+		Sale sale= new Sale(this.itemList,this.discountVaild,this.price, this.change,this.totalPriceWithTaxes);
+		return sale;
 
 	}
 
@@ -71,9 +81,6 @@ public class Sale {
 
 	}
 
-	private int recordSaleTime() {
-		return 0;
-	}
 
 	public void addDiscount() {
 

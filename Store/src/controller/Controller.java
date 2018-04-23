@@ -16,27 +16,25 @@ import model.Sale;
 
 public class Controller {
 
-	private ExternaInventoryHandler externalInventoryHandler;
+	//private ExternaInventoryHandler externalInventoryHandler;
 
+	//private Controller controller;
 
+	//private Sale sale;
 
-	private Controller controller;
+	//private SaleDTO saleDTO;
 
-	private Sale sale;
+	//private CashRegister cashRegister;
 
-	private SaleDTO saleDTO;
+	//private Item item;
 
-	private CashRegister cashRegister;
+	//private ItemCatalogHandler itemCatalogHandler;
 
-	private Item item;
+	//private CustomerDTO customerDTO;
 
-	private ItemCatalogHandler itemCatalogHandler;
+	//private CashPayment cashPayment;
 
-	private CustomerDTO customerDTO;
-
-	private CashPayment cashPayment;
-
-	private CustomerCatalog customerCatalog;
+	//private CustomerCatalog customerCatalog;
 
 	public  Controller() {
 	
@@ -50,11 +48,13 @@ public class Controller {
 
 	}
 
-	public SaleDTO scanningItems(int ItemID, int Amount) {
+	
+	public Sale scanningItems(int ItemID, int Amount) {
+		Sale sale = null;
 		Item item= new Item(ItemID,Amount);
 		item= ItemCatalogHandler.validateItem(item);
-		SaleDTO sale = Sale.addItem(item);
-		return null;
+		sale= sale.addItem(item);
+		return sale;
 	}
 
 	public SaleDTO saleinformation (int ItemID, int Amout) {

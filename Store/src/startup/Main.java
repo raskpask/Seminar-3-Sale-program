@@ -6,11 +6,12 @@ import integration.Printer;
 import view.View;
 
 public class Main {
+	
 public static void main(String[] args) {
-	Controller contr= new Controller();
 	Printer printer = new Printer();
-	View view = new View(contr);
+	View view = new View();
+	view.scanItems();
 	ExternalSystemsCreator externalSystemsCreator= new ExternalSystemsCreator();
-	System.out.println("hej vad händer??");
+	System.out.println("hej vad händer??"); 
 }
 }
