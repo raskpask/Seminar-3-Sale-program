@@ -8,8 +8,10 @@ public class Amount {
 
 	private String typeOfPayment;
 
-	public Amount amount() {
-		return null;
+	public Amount(double number, String currency, String typeOfPayment) {
+		this.number = number;
+		this.currency = currency;
+		this.typeOfPayment = typeOfPayment;
 	}
 
 	public double getNumber() {
@@ -22,6 +24,9 @@ public class Amount {
 
 	public String getTypeOfPayment() {
 		return null;
+	}
+	public void setNumber(double number) {
+		this.number= number;
 	}
 
 }

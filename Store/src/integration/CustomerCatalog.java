@@ -1,11 +1,17 @@
 package integration;
 
-import model.CustomerDTO;
+import model.Customer;
 
 public class CustomerCatalog {
 
-	public CustomerDTO vaildateDiscount(CustomerDTO CustomerID) {
-		return null;
+	public Customer vaildateDiscount(Customer customer) {
+		if((customer.getIDNumber())<500){
+			customer.setDiscount(true);
+		}
+		else {
+			customer.setDiscount(false);
+		}
+		return customer;
 	}
 
 	public CustomerCatalog() {

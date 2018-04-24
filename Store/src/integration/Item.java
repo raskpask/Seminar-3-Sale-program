@@ -7,7 +7,7 @@ import integration.ItemCatalogHandler;
 
 public class Item {
 
-	private Amount price;
+	private  Amount price;
 
 	private int IDNumber;
 
@@ -24,6 +24,9 @@ public class Item {
 
 	public int getIDNumber() {
 		return this.IDNumber;
+	}
+	public void setPrice(Amount price) {
+		this.price=price;
 	}
 
 }

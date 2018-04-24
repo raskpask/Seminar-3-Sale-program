@@ -5,11 +5,12 @@ import model.Sale;
 
 public class Change {
 
-	private Amount change;
+	private double change;
 
-	private Sale sale;
+	//private Sale sale;
 
-	public Change() {
+	public Change(double change) {
+		this.change = change;
 		}
 
 	public Change getChange() {

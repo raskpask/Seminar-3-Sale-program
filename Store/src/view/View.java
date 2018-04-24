@@ -3,6 +3,7 @@ package view;
 
 import controller.Controller;
 import integration.SaleDTO;
+import model.Customer;
 import model.Sale;
 
 public class View {
@@ -14,8 +15,14 @@ public class View {
 	}
 	
 	public void scanItems() {
-		Sale sale =controller.scanningItems(1,1);
+		controller.scanningItems(1,1);
 	}
-
+	public void newSale() {
+		controller.newSale();
+	}
+	public void requestDiscount() {
+		Customer customer= new Customer(450);
+		controller.discountRequest(customer);
+	}
 
 }

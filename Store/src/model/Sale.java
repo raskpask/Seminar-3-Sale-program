@@ -74,6 +74,7 @@ public class Sale {
 		this.numberOfItems++;
 		Sale sale= new Sale(this.itemList,this.discountVaild,this.price, this.change,this.totalPriceWithTaxes);
 		return sale;
+		
 
 	}
 
@@ -83,7 +84,7 @@ public class Sale {
 
 
 	public void addDiscount() {
-
+		this.discountVaild= true;
 	}
 
 }
