@@ -12,7 +12,7 @@ public class Sale {
 
 	private Item[] itemList;
 	
-	private int numberOfItems;
+	private int numberOfItems=0;
 
 	private boolean discountVaild;
 
@@ -55,25 +55,38 @@ public class Sale {
 	public Amount getPrice() {
 		return this.price;
 	}
-	public Change getChange() {
+	/**
+	 * Makes object change and decide how much the change should be.
+	 * @param paidAmount 
+	 * @return
+	 */
+	public Change getChange(Amount paidAmount) {
+		 this.change = new Change(paidAmount,this.totalPriceWithTaxes);
 		return this.change;
 	}
+	/**
+	 * Sets the taxes of the goods. 25% taxes.
+	 * @return
+	 */
 	public Amount getTotalPriceWithTaxes() {
+		this.totalPriceWithTaxes.setNumber(price.getNumber()*1.25);
 		return this.totalPriceWithTaxes;
 	}
-	public void payment(int cashPayment) {
-
+	public void payment(CashPayment cashPayment) {
+		//cashPayment.calculateTotalCost());
 	}
 
-	public void printReciept(Printer printer) {
-
+	public void printReciept(Sale sale,Printer printer) {
+		this.receipt = new Receipt(sale);
+		printer.printReceipt(receipt);
+		
 	}
 
-	public Sale addItem(Item item) {
-		this.itemList[numberOfItems]=item;
+	public void addItem(Item item) {
+		this.itemList[this.numberOfItems]=item;
 		this.numberOfItems++;
-		Sale sale= new Sale(this.itemList,this.discountVaild,this.price, this.change,this.totalPriceWithTaxes);
-		return sale;
+		//Sale sale= new Sale(this.itemList,this.discountVaild,this.price, this.change,this.totalPriceWithTaxes);
+		//return sale;
 		
 
 	}

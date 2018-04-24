@@ -15,7 +15,9 @@ public class Item {
 
 	private ItemCatalogHandler itemCatalogHandler;
 
-	public Item(int itemID, int IDNumber) {
+	public Item(int itemID, int quantity) {
+		this.IDNumber= itemID;
+		this.quantity= quantity;
 	}
 
 	public Amount getprice() {

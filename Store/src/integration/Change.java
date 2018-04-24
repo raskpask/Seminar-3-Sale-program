@@ -9,11 +9,11 @@ public class Change {
 
 	//private Sale sale;
 
-	public Change(double change) {
-		this.change = change;
+	public Change(Amount paidAmount,Amount priceWithTaxes) {
+		this.change= paidAmount.getNumber()- priceWithTaxes.getNumber();
 		}
 
-	public Change getChange() {
-		return null;
+	public double getChange() {
+		return this.change;
 	}
 }

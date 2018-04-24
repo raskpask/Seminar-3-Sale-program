@@ -10,6 +10,7 @@ public class Receipt {
 	private Printer printer;
 
 	public Receipt(Sale sale) {
+		this.saleInfo=sale;
 	}
 
 	public Sale getSale() {

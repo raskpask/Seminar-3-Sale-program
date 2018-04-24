@@ -1,6 +1,7 @@
 package integration;
 
 import integration.SaleDTO;
+import model.Sale;
 
 
 public class ExternalAccountingSystemHandler {
@@ -8,7 +9,7 @@ public class ExternalAccountingSystemHandler {
 	public ExternalAccountingSystemHandler() {
 	}
 
-	public void storeSale(SaleDTO saleinfo) {
+	public void storeSale(Sale sale) {
 
 	}
 

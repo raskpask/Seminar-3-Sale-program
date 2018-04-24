@@ -7,7 +7,7 @@ public class CashPayment {
 	}
 
 	public void calculateTotalCost(Sale costOfSale) {
-
+		
 	}
 
 }

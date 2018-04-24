@@ -3,6 +3,7 @@ package view;
 
 import controller.Controller;
 import integration.SaleDTO;
+import model.Amount;
 import model.Customer;
 import model.Sale;
 
@@ -15,14 +16,21 @@ public class View {
 	}
 	
 	public void scanItems() {
-		controller.scanningItems(1,1);
+		Sale sale=controller.scanningItems(1,1);
 	}
 	public void newSale() {
 		controller.newSale();
 	}
 	public void requestDiscount() {
 		Customer customer= new Customer(450);
-		controller.discountRequest(customer);
+		Sale sale= controller.discountRequest(customer);
+	}
+	public void completeSale() {
+		Sale sale= controller.completeingSale();
+	}
+	public void pay(double amountPaid,String currency, String typeOfPayment) {
+		Amount paidAmount= new Amount(amountPaid, currency, typeOfPayment);
+		Sale sale=controller.pay(paidAmount);
 	}
 
 }
