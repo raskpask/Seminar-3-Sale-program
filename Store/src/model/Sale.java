@@ -91,13 +91,25 @@ public class Sale {
 
 	}
 
-	public void storeSale(Sale saleinfo) {
-
-	}
-
 
 	public void addDiscount() {
 		this.discountVaild= true;
 	}
-
+	/**
+	 * prints the sale information in view.
+	 * @return 
+	 */
+	public String toString() {
+		String items ="";
+		for (int i=0;i<this.numberOfItems; i++) {
+			items+= itemList[i].toString();
+		}
+		String saleinfo = "Number of items: "+ numberOfItems +"\n "
+				+ "Items: "+ items + "\n "
+				+ "Was there a discount? "+ discountVaild + "\n"+
+				"The running total is: "+price.getNumber() + "\n "
+				+ "The customer should get: "+change.getChange()+ " SEK back"+"\n"+
+				"The total price is: "+ totalPriceWithTaxes.getNumber()+"\n \n";
+		return saleinfo;
+	}
 }

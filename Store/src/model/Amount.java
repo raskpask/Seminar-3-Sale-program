@@ -28,5 +28,12 @@ public class Amount {
 	public void setNumber(double number) {
 		this.number= number;
 	}
+	/*
+	 * prints the values of Amount, for debug
+	 */
+	public String toString() {
+		String str = "Number : "+ this.number;
+		return str;
+	}
 
 }

@@ -30,5 +30,12 @@ public class Item {
 	public void setPrice(Amount price) {
 		this.price=price;
 	}
+	public String toString() {
+		String itemInfo = "Item: "+IDNumber + "\n"+
+				"The price is: " +price.getNumber()+"\n"+
+				"The quantity of the item is: "+quantity+"\n";
+		return itemInfo;
+		
+	}
 
 }

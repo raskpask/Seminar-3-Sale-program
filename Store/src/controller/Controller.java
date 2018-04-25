@@ -82,6 +82,7 @@ public class Controller {
 	public Sale scanningItems(int ItemID, int Amount) {
 		Item item= new Item(ItemID,Amount);
 		item= ItemCatalogHandler.validateItem(item);
+		System.out.println(item); // checks the value of the item
 		sale.addItem(item);
 		return sale;
 	}
@@ -95,7 +96,7 @@ public class Controller {
 		if (customer.getDiscount()) {
 			sale.addDiscount();
 		}
-		return null;
+		return sale;
 	}
 
 	public Sale completeingSale() {

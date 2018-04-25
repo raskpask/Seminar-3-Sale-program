@@ -16,8 +16,10 @@ public class ItemCatalogHandler {
 		case 0: price.setNumber(23);
 			item.setPrice(price);
 			return item;
-		case 1: price.setNumber(20);
-		item.setPrice(price);
+		case 1: price.setNumber(20); 
+		item.setPrice(price); 
+		System.out.println(item);
+		//System.out.println("felllllllllllllll");
 			return item;
 		case 2: price.setNumber(99);
 		item.setPrice(price);

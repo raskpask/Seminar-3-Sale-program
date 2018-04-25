@@ -8,10 +8,16 @@ import view.View;
 public class Main {
 	
 public static void main(String[] args) {
-	Printer printer = new Printer();
+	//Printer printer = new Printer();
 	View view = new View();
-	view.scanItems();
-	ExternalSystemsCreator externalSystemsCreator= new ExternalSystemsCreator();
-	System.out.println("hej vad händer??"); 
+	view.newSale();
+	view.scanItems(1, 1);
+	view.requestDiscount();
+	view.completeSale();
+	view.pay(500, "SEK", "Cash");
+	
+	
+	//ExternalSystemsCreator externalSystemsCreator= new ExternalSystemsCreator();
+	
 }
 }
