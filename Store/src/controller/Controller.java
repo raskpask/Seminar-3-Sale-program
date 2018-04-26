@@ -77,7 +77,7 @@ public class Controller {
 		return this.sale;
 	}
 /**
- * The process for a new sale
+ * The process for a new sale. The first 4 rows makes objects to send into the sale. The 5th row creates the object sale.
  */
 	public void newSale() {
 		Item[] itemList = new Item[150];

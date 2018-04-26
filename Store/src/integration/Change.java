@@ -10,7 +10,10 @@ public class Change {
 	//private Sale sale;
 
 	public Change(Amount paidAmount,Amount priceWithTaxes) {
-		this.change= paidAmount.getNumber()- priceWithTaxes.getNumber();
+		//double paid = paidAmount.getNumber();
+		//double price = priceWithTaxes.getNumber();
+		//this.change= paid-price;
+		this.change= ((double) paidAmount.getNumber()-(double) priceWithTaxes.getNumber());
 		}
 
 	public double getChange() {
