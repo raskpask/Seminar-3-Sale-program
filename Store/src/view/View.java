@@ -27,8 +27,8 @@ public class View {
  * @param quantity
  */
 	public void scanItems(int itemID, int quantity) {
-		Sale sale=controller.scanningItems(itemID,quantity);
-		System.out.println(sale);
+		System.out.println(controller.scanningItems(itemID,quantity));
+		//System.out.println(sale);
 	}
 	/**
 	 * Create a new sale

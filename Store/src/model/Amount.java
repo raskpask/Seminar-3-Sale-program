@@ -15,7 +15,7 @@ public class Amount {
 	}
 
 	public double getNumber() {
-		return 0;
+		return this.number;
 	}
 
 	public String getCurrency() {

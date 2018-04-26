@@ -110,6 +110,9 @@ public class Sale {
 	public void addItem(Item item) {
 		this.itemList[this.numberOfItems]=item;
 		this.numberOfItems++;
+		double priceOfItem=item.getprice().getNumber();
+		double currentPrice=this.price.getNumber();
+		this.price.setNumber(priceOfItem+currentPrice);
 		//Sale sale= new Sale(this.itemList,this.discountVaild,this.price, this.change,this.totalPriceWithTaxes);
 		//return sale;
 		
