@@ -27,6 +27,9 @@ public class Item {
 	public int getIDNumber() {
 		return this.IDNumber;
 	}
+	public void setPrice0(Amount price) {
+		this.price=price;
+	}
 	public void setPrice(Amount price) {
 		this.price=price;
 	}

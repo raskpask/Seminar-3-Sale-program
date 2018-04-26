@@ -36,7 +36,14 @@ public class Sale {
 
 	//private ExternalInventoryHandler externalInventoryHandler;
 
-
+/**
+ * creates the sale object this is done every time newSale() is called. Gives the function:
+ * @param itemList
+ * @param discountVaild
+ * @param price
+ * @param change
+ * @param totalPriceWithTaxes
+ */
 	public Sale(Item[] itemList,boolean discountVaild, Amount price, Change change,Amount totalPriceWithTaxes) {
 		this.itemList = itemList;
 		this.discountVaild= discountVaild;
@@ -45,13 +52,24 @@ public class Sale {
 		this.totalPriceWithTaxes=totalPriceWithTaxes;
 		
 	}
-	
+	/**
+	 * Returns all the items in the sale
+	 * @return
+	 */
 	public Item[] getItems() {
 		return this.itemList;
 	}
+	/**
+	 * Returns is the sale has a discount or not.
+	 * @return
+	 */
 	public boolean getDiscountValid() {
 		return this.discountVaild;
 	}
+	/**
+	 * Returns the running total.
+	 * @return
+	 */
 	public Amount getPrice() {
 		return this.price;
 	}
@@ -72,16 +90,23 @@ public class Sale {
 		this.totalPriceWithTaxes.setNumber(price.getNumber()*1.25);
 		return this.totalPriceWithTaxes;
 	}
-	public void payment(CashPayment cashPayment) {
+	/*public void payment(CashPayment cashPayment) {
 		//cashPayment.calculateTotalCost());
-	}
-
+	}*/
+/**
+ * Makes a receipt and then uses the printer to print it.
+ * @param sale
+ * @param printer
+ */
 	public void printReciept(Sale sale,Printer printer) {
 		this.receipt = new Receipt(sale);
 		printer.printReceipt(receipt);
 		
 	}
-
+/**
+ * Adds a item to the item list
+ * @param item
+ */
 	public void addItem(Item item) {
 		this.itemList[this.numberOfItems]=item;
 		this.numberOfItems++;
@@ -91,7 +116,9 @@ public class Sale {
 
 	}
 
-
+/**
+ * Makes the discount boolean true.
+ */
 	public void addDiscount() {
 		this.discountVaild= true;
 	}

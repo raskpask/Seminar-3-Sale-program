@@ -7,7 +7,12 @@ public class ItemCatalogHandler {
 	public ItemCatalogHandler() {
 		
 	}
-
+/**
+ * Takes a item and gives it a price if the item is in the system.
+ * @param item
+ * @return
+ */
+	
 	public static Item validateItem(Item item) {
 		int IDNumber =item.getIDNumber();
 		Amount price = new Amount(0,"SEK","Cash");
@@ -16,8 +21,9 @@ public class ItemCatalogHandler {
 		case 0: price.setNumber(23);
 			item.setPrice(price);
 			return item;
-		case 1: price.setNumber(20); 
-		item.setPrice(price); 
+		case 1: 
+		price.setNumber(20); 
+		item.setPrice(price); //Problem!!
 		System.out.println(item);
 		//System.out.println("felllllllllllllll");
 			return item;
