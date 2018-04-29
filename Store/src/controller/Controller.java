@@ -30,13 +30,7 @@ public class Controller {
 	
 	private Printer printer;
 	
-	//private Controller controller;
-
-	//private SaleDTO saleDTO;
-
 	private CashRegister cashRegister;
-
-	//private Item item;
 
 	private ItemCatalogHandler itemCatalogHandler;
 
@@ -68,8 +62,6 @@ public class Controller {
 		Cash payment = new Cash();
 		cashRegister.addPayment(payment);
 		this.cashPayment= new CashPayment(paidAmount);
-		//cashPayment.calculateTotalCost(sale); // This functions is not used. Price is calculated in sale already
-		//sale.payment(cashPayment);
 		sale.printReciept(this.sale,this.printer);
 		externalInventoryHandler.storeItems(sale.getItems());
 		externalAccountingSystemHandler.storeSale(this.sale);
@@ -96,7 +88,7 @@ public class Controller {
 		Item item= new Item(ItemID,Amount);
 		item= ItemCatalogHandler.validateItem(item);
 		sale.addItem(item);
-		return sale;
+		return sale; 
 	}
 
 /**
@@ -119,8 +111,10 @@ public class Controller {
 		sale.getTotalPriceWithTaxes();
 		return sale;
 	}
-
-	/*public Sale scannItem(int ItemID) {
-		return null;
-	}*/
+/**
+ * Returns the current sale info.
+ */
+	public Sale currentSaleInfo() {
+		return this.sale;
+	}
 }

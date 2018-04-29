@@ -33,7 +33,17 @@ public class Amount {
 	 */
 	public String toString() {
 		String str = "Number : "+ this.number;
-		return str;
+		return str; 
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Amount other = (Amount) obj;
+		return this.number == other.getNumber() &&
+				this.currency.equals(other.currency) &&
+				this.typeOfPayment.equals(other.typeOfPayment);
+	}
+	
+	
 
 }

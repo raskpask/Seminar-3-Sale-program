@@ -16,25 +16,13 @@ public class Sale {
 
 	private boolean discountVaild;
 
-	//private int recordSaleTime;
-
 	private Amount price;
 
 	private Change change;
 
 	private Amount totalPriceWithTaxes;
 
-	//private SaleDTO saleDTO;
-
 	private Receipt receipt;
-
-	//private CashPayment cashPayment;
-
-	//private Printer printer;
-
-	//private ExternalAccountingSystemHandler externalAccountingSystemHandler;
-
-	//private ExternalInventoryHandler externalInventoryHandler;
 
 /**
  * creates the sale object this is done every time newSale() is called. Gives the function:
@@ -93,6 +81,13 @@ public class Sale {
 	/*public void payment(CashPayment cashPayment) {
 		//cashPayment.calculateTotalCost());
 	}*/
+	
+	/**
+	 * Gets the value of TotalPriceWithTaxes
+	 */
+	public Amount getValueOfTotalPriceWithTaxes() {
+		return this.totalPriceWithTaxes;
+	}
 /**
  * Makes a receipt and then uses the printer to print it.
  * @param sale
@@ -110,7 +105,7 @@ public class Sale {
 	public void addItem(Item item) {
 		this.itemList[this.numberOfItems]=item;
 		this.numberOfItems++;
-		double priceOfItem=item.getprice().getNumber();
+		double priceOfItem=item.getPrice().getNumber()*item.getQuantity();
 		double currentPrice=this.price.getNumber();
 		this.price.setNumber(priceOfItem+currentPrice);
 		//Sale sale= new Sale(this.itemList,this.discountVaild,this.price, this.change,this.totalPriceWithTaxes);

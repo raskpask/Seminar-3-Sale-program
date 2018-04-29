@@ -10,13 +10,17 @@ public class Change {
 	//private Sale sale;
 
 	public Change(Amount paidAmount,Amount priceWithTaxes) {
-		//double paid = paidAmount.getNumber();
-		//double price = priceWithTaxes.getNumber();
-		//this.change= paid-price;
 		this.change= ((double) paidAmount.getNumber()-(double) priceWithTaxes.getNumber());
 		}
 
 	public double getChange() {
 		return this.change;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Change other= (Change) obj;
+		return this.change == other.getChange();
+	}
+	
 }

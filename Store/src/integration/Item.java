@@ -31,8 +31,8 @@ public class Item {
  * Sends information about the price
  * @return
  */
-	public Amount getprice() {
-		return this.price;
+	public Amount getPrice() {
+		return this.price; 
 	}
 /**
  * Sends inforamtion about the ID number of the item.
@@ -40,6 +40,12 @@ public class Item {
  */
 	public int getIDNumber() {
 		return this.IDNumber;
+	}
+/**
+ * Sends the quantity of the item
+ */
+	public int getQuantity() {
+		return this.quantity;
 	}
 /**
  * Sets the price of the item, is used in the itemCaltalog Handler

@@ -22,10 +22,8 @@ public class ItemCatalogHandler {
 			item.setPrice(price);
 			return item;
 		case 1: 
-		price.setNumber(20); 
-		item.setPrice(price); //Problem!!
-		System.out.println(item);
-		//System.out.println("felllllllllllllll");
+		price.setNumber(20);  
+		item.setPrice(price); 
 			return item;
 		case 2: price.setNumber(99);
 		item.setPrice(price);
