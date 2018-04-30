@@ -23,7 +23,7 @@ public class CustomerCatalog {
 		else {
 			customer.setDiscount(false);
 		}
-		return customer;
+		return customer; 
 	}
 
 	

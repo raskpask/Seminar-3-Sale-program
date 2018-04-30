@@ -18,7 +18,7 @@ public class View {
  * initialize View and creates the controller
  */
 	public View() {
-		controller = new Controller();
+		controller = new Controller(); 
 	}
 	
 /**

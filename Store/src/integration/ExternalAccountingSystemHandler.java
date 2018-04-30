@@ -12,9 +12,12 @@ public class ExternalAccountingSystemHandler {
 
 	public ExternalAccountingSystemHandler() {
 	}
-
+/**
+ * Stores the sale in external database
+ * @param sale
+ */
 	public void storeSale(Sale sale) {
-
+		// some code for storeing a sale in database
 	}
 
 }

@@ -64,5 +64,11 @@ public class Item {
 		return itemInfo;
 		
 	}
+@Override
+public boolean equals(Object obj) {
+	Item other= (Item) obj;
+	return other.getIDNumber() == this.IDNumber;
+}
+	
 
 }

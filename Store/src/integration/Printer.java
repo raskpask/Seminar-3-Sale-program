@@ -1,7 +1,11 @@
 package integration;
 
 import model.Receipt;
-
+/**
+ * Handles the Printing functions.
+ * @author molin
+ *
+ */
 public class Printer {
 
 	public Printer() {

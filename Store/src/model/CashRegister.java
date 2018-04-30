@@ -1,11 +1,17 @@
 package model;
-
+/**
+ * The class that contains information about the payment and tha balance in the register.
+ * @author molin
+ *
+ */
 public class CashRegister {
 	
 	private int balance;
 	
 	private Cash payment;
-	
+/**
+ * Contructor of the class.
+ */
 	public CashRegister() {
 		
 	}

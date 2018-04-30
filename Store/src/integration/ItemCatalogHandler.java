@@ -1,7 +1,11 @@
 package integration;
 
 import model.Amount;
-
+/**
+ * Gives the item a price when comunicating with a external database.
+ * @author molin
+ *
+ */
 public class ItemCatalogHandler {
 
 	public ItemCatalogHandler() {

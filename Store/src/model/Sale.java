@@ -7,7 +7,11 @@ import integration.ExternalInventoryHandler;
 import integration.Item;
 import integration.Printer;
 import integration.SaleDTO;
-
+/**
+ * Handles the sale and contains all the information about it.
+ * @author molin
+ *
+ */
 public class Sale {
 
 	private Item[] itemList;
@@ -78,9 +82,12 @@ public class Sale {
 		this.totalPriceWithTaxes.setNumber(price.getNumber()*1.25);
 		return this.totalPriceWithTaxes;
 	}
-	/*public void payment(CashPayment cashPayment) {
-		//cashPayment.calculateTotalCost());
-	}*/
+	/**
+	 * Gets the total price with taxes
+	 */
+	public Amount getAmountTotalPriceWithTaxes() {
+		return this.totalPriceWithTaxes;
+	}
 	
 	/**
 	 * Gets the value of TotalPriceWithTaxes

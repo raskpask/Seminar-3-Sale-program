@@ -9,7 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import integration.Change;
 import integration.Item;
-
+/**
+ * Testing the sale class.
+ * @author molin
+ *
+ */
 class SaleTest {
 	private Item[] itemList;
 	
@@ -26,7 +30,10 @@ class SaleTest {
 	private Receipt receipt;
 	
 	private Sale sale;
-	
+	/**
+	 * methods that are run before a test.
+	 * @throws Exception
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 		this.itemList = new Item[150];
@@ -37,7 +44,10 @@ class SaleTest {
 		this.sale= new Sale(itemList,discountVaild,price,change,totalPriceWithTaxes);
 		this.receipt= new Receipt(sale);
 		}
-
+/**
+ * methods that are run after a test
+ * @throws Exception
+ */
 	@AfterEach
 	void tearDown() throws Exception {
 		this.sale=null;
@@ -46,6 +56,10 @@ class SaleTest {
 		this.totalPriceWithTaxes=null;
 		this.receipt=null;
 	}
+	
+	/**
+	 * Testing the addItem method.
+	 */
 	@Test
 	void testAddItem() {
 		Item expectedItem = new Item(3,1);
@@ -57,7 +71,9 @@ class SaleTest {
 		assertEquals("Item not added", expectedItem, items[0]);
 		assertEquals("The price of the sale is not correct", expectedItem.getPrice(), sale.getPrice());
 	}
-	
+	/**
+	 * Testing the addItems method.
+	 */
 	@Test
 	void testAddItems() {
 		Item expectedItem = new Item(3,3);
@@ -70,7 +86,9 @@ class SaleTest {
 		assertEquals("Item not added", expectedItem, items[0]);
 		assertEquals("The price of the sale is not correct", expectedItem.getPrice(), sale.getPrice());
 	}
-	
+	/**
+	 * Testing the addDiscount method.
+	 */
 	@Test
 	void testAddDiscount() {
 		boolean expectedBoolean =true;
@@ -79,6 +97,9 @@ class SaleTest {
 		
 		assertEquals("Discount not added",expectedBoolean,sale.getDiscountValid());
 	}
+	/**
+	 * Testing the totalPriceWithTaxes method.
+	 */
 	@Test
 	void testTotalPriceWithTaxes() {
 		Amount expectedAmount = new Amount(37.5, "","");

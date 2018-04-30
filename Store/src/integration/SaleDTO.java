@@ -3,8 +3,12 @@ package integration;
 import integration.Item;
 import model.Amount;
 import model.Sale;
-//import TotalPriceAfterTaxes;
 
+/**
+ * Store the information about the sale. This class in not used because sale in sent to view instead.
+ * @author molin
+ *
+ */
 public class SaleDTO {
 
 	private Item[] itemList;

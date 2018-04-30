@@ -4,7 +4,11 @@ import controller.Controller;
 import integration.ExternalSystemsCreator;
 import integration.Printer;
 import view.View;
-
+/**
+ * Mains class that is run when the system is started.
+ * @author molin
+ *
+ */
 public class Main {
 	/**
 	 * Main functions that creates view and uses hard coded commands.
@@ -17,7 +21,7 @@ public static void main(String[] args) {
 	view.requestDiscount();
 	view.scanItems(3, 2);
 	view.completeSale();
-	view.pay(500, "SEK", "Cash");
+	view.pay(500, "SEK", "Cash"); 
 	
 	
 	//ExternalSystemsCreator externalSystemsCreator= new ExternalSystemsCreator();
