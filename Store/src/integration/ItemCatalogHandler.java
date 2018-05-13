@@ -36,7 +36,7 @@ public class ItemCatalogHandler {
 		item.setPrice(price);
 			return item;
 		default:
-			item.setPrice(price);
+			item.setPrice(null);
 			return item;
 		}
 	}

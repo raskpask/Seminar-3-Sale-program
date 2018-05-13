@@ -2,7 +2,6 @@ package view;
 
 
 import controller.Controller;
-import integration.SaleDTO;
 import model.Amount;
 import model.Customer;
 import model.Sale;
@@ -25,8 +24,9 @@ public class View {
  * Function for scanning a item	
  * @param itemID
  * @param quantity
+ * @throws ItemNotFoundException 
  */
-	public void scanItems(int itemID, int quantity) {
+	public void scanItems(int itemID, int quantity) throws Exceptions.ItemNotFoundException {
 		System.out.println(controller.scanningItems(itemID,quantity));
 		//System.out.println(sale);
 	}
@@ -42,14 +42,14 @@ public class View {
 	 */
 	public void requestDiscount() {
 		Customer customer= new Customer(450);
-		Sale sale= controller.discountRequest(customer);
+		model.SaleDTO sale= controller.discountRequest(customer);
 		System.out.println(sale);
 	}
 	/**
 	 * Finalize a sale
 	 */
 	public void completeSale() {
-		Sale sale= controller.completeingSale();
+		model.SaleDTO sale= controller.completeingSale();
 		System.out.println(sale);
 	}
 	/**
@@ -60,7 +60,7 @@ public class View {
 	 */
 	public void pay(double amountPaid,String currency, String typeOfPayment) {
 		Amount paidAmount= new Amount(amountPaid, currency, typeOfPayment);
-		Sale sale=controller.pay(paidAmount);
+		model.SaleDTO sale=controller.pay(paidAmount);
 		System.out.println(sale);
 	}
 	

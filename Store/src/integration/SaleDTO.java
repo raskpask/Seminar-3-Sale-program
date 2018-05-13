@@ -1,4 +1,4 @@
-package integration;
+/*package integration;
 
 import integration.Item;
 import model.Amount;
@@ -8,7 +8,7 @@ import model.Sale;
  * Store the information about the sale. This class in not used because sale in sent to view instead.
  * @author molin
  *
- */
+ *//*
 public class SaleDTO {
 
 	private Item[] itemList;
@@ -43,7 +43,7 @@ public class SaleDTO {
 		return 0;
 	}*/
 
-	public Amount getPrice() {
+	/*public Amount getPrice() {
 		return null;
 	}
 
@@ -55,4 +55,4 @@ public class SaleDTO {
 		return null;
 	}*/
 
-}
+//}

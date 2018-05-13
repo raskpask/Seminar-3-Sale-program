@@ -55,6 +55,12 @@ public class Item {
 		this.price=price;
 	}
 /**
+ * Sets the quantity of an item
+ */
+	public void increaseQuantity(int quantity) {
+		this.quantity+=quantity;
+	}
+/**
  * Takes the info about the item and puts it into a String.
  */
 	public String toString() {

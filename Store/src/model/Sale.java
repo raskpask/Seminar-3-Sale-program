@@ -6,7 +6,6 @@ import integration.ExternalAccountingSystemHandler;
 import integration.ExternalInventoryHandler;
 import integration.Item;
 import integration.Printer;
-import integration.SaleDTO;
 /**
  * Handles the sale and contains all the information about it.
  * @author molin
@@ -96,6 +95,18 @@ public class Sale {
 		return this.totalPriceWithTaxes;
 	}
 /**
+ * Gets the number of items in the sale.
+ */
+	public int getNumberOfItems() {
+		return this.numberOfItems;
+	}
+/**
+ * Gets the value of change. 
+ */
+	public Change getValueOfChange() {
+		return this.change;
+	}
+/**
  * Makes a receipt and then uses the printer to print it.
  * @param sale
  * @param printer
@@ -105,6 +116,32 @@ public class Sale {
 		printer.printReceipt(receipt);
 		
 	}
+/**
+ * Checks if the item has been scanned.
+ */
+	public boolean checkIfItemHasBeenAdded(Item item) {
+		for(int i=0;i<numberOfItems;i++){		
+			if(itemList[i].getIDNumber()==item.getIDNumber()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+/**
+ * Increase the quantity of an item.
+ */
+	public void increaseQuantity(Item item) {
+		for(int i=0;i<numberOfItems;i++){		
+			if(itemList[i].getIDNumber()==item.getIDNumber()) {
+				itemList[i].increaseQuantity(item.getQuantity());
+				double priceOfItem=item.getPrice().getNumber()*item.getQuantity();
+				double currentPrice=this.price.getNumber();
+				this.price.setNumber(priceOfItem+currentPrice);
+			}
+		}
+	}
+		
 /**
  * Adds a item to the item list
  * @param item

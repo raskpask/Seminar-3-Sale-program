@@ -1,6 +1,7 @@
 package controller;
 
 
+import Exceptions.ItemNotFoundException;
 import integration.Change;
 import integration.CustomerCatalog;
 import integration.ExternalAccountingSystemHandler;
@@ -8,7 +9,6 @@ import integration.ExternalInventoryHandler;
 import integration.Item;
 import integration.ItemCatalogHandler;
 import integration.Printer;
-import integration.SaleDTO;
 import model.Amount;
 import model.Cash;
 import model.CashPayment;
@@ -58,7 +58,7 @@ public class Controller {
  * @param paidAmout
  * @return
  */
-	public Sale pay(Amount paidAmount) {
+	public model.SaleDTO pay(Amount paidAmount) {
 		Cash payment = new Cash();
 		cashRegister.addPayment(payment);
 		this.cashPayment= new CashPayment(paidAmount);
@@ -66,7 +66,7 @@ public class Controller {
 		externalInventoryHandler.storeItems(sale.getItems());
 		externalAccountingSystemHandler.storeSale(this.sale);
 		sale.getChange(paidAmount);
-		return this.sale;
+		return new model.SaleDTO(sale);
 	}
 /**
  * The process for a new sale. The first 4 rows makes objects to send into the sale. The 5th row creates the object sale.
@@ -78,17 +78,38 @@ public class Controller {
 		Amount totalPriceWithTaxes= new Amount(0,"SEK","Cash");
 		this.sale= new Sale	(itemList, false, price, change/*send null instead and make object later??*/, totalPriceWithTaxes);
 	}
+	
 /**
  * The process for scanning a item.
  * @param ItemID
  * @param Amount
  * @return
  */
-	public Sale scanningItems(int ItemID, int Amount) {
-		Item item= new Item(ItemID,Amount);
+	public model.SaleDTO scanningItems(int ItemID, int Amount) throws ItemNotFoundException {
+		/*Item item= new Item(ItemID,Amount);
 		item= ItemCatalogHandler.validateItem(item);
+		if(item.getPrice()==null) {
+			throw new ItemNotFoundException(item);
+		}
 		sale.addItem(item);
-		return sale; 
+		return sale;*/ 
+		Item item;
+		try{
+		item= new Item(ItemID,Amount);
+		item= ItemCatalogHandler.validateItem(item);
+		if(item.getPrice()==null) {
+			throw new ItemNotFoundException(item);
+		}
+		if(sale.checkIfItemHasBeenAdded(item)) {
+			sale.increaseQuantity(item);
+			return new model.SaleDTO(sale);
+		}
+		sale.addItem(item);
+		} catch(ItemNotFoundException nullItem) {
+			nullItem.printStackTrace();
+		}
+		
+		return new model.SaleDTO(sale); 
 	}
 
 /**
@@ -96,25 +117,28 @@ public class Controller {
  * @param customer
  * @return
  */
-	public Sale discountRequest(Customer customer) {
+	public model.SaleDTO discountRequest(Customer customer) {
 		customerCatalog.vaildateDiscount(customer);
 		if (customer.getDiscount()) {
 			sale.addDiscount();
 		}
-		return sale;
+		return new model.SaleDTO(sale);
 	}
 /**
  * The process for completing a sale returns a sale to view.
  * @return
  */
-	public Sale completeingSale() {
+	public model.SaleDTO completeingSale() {
 		sale.getTotalPriceWithTaxes();
-		return sale;
+		return new model.SaleDTO(sale);
 	}
 /**
  * Returns the current sale info.
  */
-	public Sale currentSaleInfo() {
-		return this.sale;
+	public model.SaleDTO currentSaleInfo() {
+		return new model.SaleDTO(sale);
 	}
+/**
+ * 
+ */
 }

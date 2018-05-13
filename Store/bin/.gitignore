@@ -1,5 +1,6 @@
-/model/
 /controller/
-/integration/
-/startup/
+/model/
 /view/
+/Exceptions/
+/startup/
+/integration/
