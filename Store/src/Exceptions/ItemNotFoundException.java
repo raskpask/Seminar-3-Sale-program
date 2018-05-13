@@ -17,7 +17,7 @@ public class ItemNotFoundException extends Exception {
 	 * @param itemThatCanNotBeFound The item that could not be found.
 	 */
 	public ItemNotFoundException(Item itemThatCanNotBeFound ) {
-		 super("Unable to find "+ itemThatCanNotBeFound.getIDNumber()+" because is not in the database");
+		 super("Unable to find item with ID: "+ itemThatCanNotBeFound.getIDNumber()+" because is not in the database");
 		 this.itemThatCanNotBeFound=itemThatCanNotBeFound;
 }
 	/**

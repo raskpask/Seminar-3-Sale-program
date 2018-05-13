@@ -2,6 +2,7 @@ package controller;
 
 
 import Exceptions.DatabaseNotFound;
+import view.*;
 import Exceptions.ItemNotFoundException;
 import integration.Change;
 import integration.CustomerCatalog;
@@ -111,12 +112,19 @@ public class Controller {
 		}
 		sale.addItem(item);
 		} catch(ItemNotFoundException nullItem) {
-			System.out.println("This message is the the service point: \n -------------------------------------- \n"
-					+nullItem.getMessage()+"\n -------------------------------");
-			//nullItem.printStackTrace();
+			//System.out.println("This message is the the service point: \n -------------------------------------- \n"
+				//	+nullItem.getMessage()+"\n ------------------------------- \n \n \n");
+			view.ErrorMessageHandler.showErrorMessage(nullItem.getMessage());
+			System.out.println("This message is to the developer \n"
+					+ "------------------------------- \n"+ nullItem.getStackTrace()+ "\n"
+					+ "------------------------------------- \n \n \n");
 		} catch(DatabaseNotFound e) {
-			System.out.println("This message is the the service point:  \n -------------------------------------- \n"+e.getMessage()
-			+"\n -------------------------------");
+			/*System.out.println("This message is the the service point:  \n -------------------------------------- \n"+e.getMessage()
+			+"\n ------------------------------- \n \n \n");*/
+			view.ErrorMessageHandler.showErrorMessage(e.getMessage());
+			System.out.println("This message is to the developer \n"
+					+ "------------------------------- \n"+ e.getStackTrace()+ "\n"
+					+ "------------------------------------- \n \n \n");
 		}
 		
 		return new model.SaleDTO(sale); 
