@@ -1,6 +1,7 @@
 package view;
 
 
+import Exceptions.DatabaseNotFound;
 import controller.Controller;
 import model.Amount;
 import model.Customer;
@@ -25,8 +26,9 @@ public class View {
  * @param itemID
  * @param quantity
  * @throws ItemNotFoundException 
+ * @throws DatabaseNotFound 
  */
-	public void scanItems(int itemID, int quantity) throws Exceptions.ItemNotFoundException {
+	public void scanItems(int itemID, int quantity) throws Exceptions.ItemNotFoundException, DatabaseNotFound {
 		System.out.println(controller.scanningItems(itemID,quantity));
 		//System.out.println(sale);
 	}

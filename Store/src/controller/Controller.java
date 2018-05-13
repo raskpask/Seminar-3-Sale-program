@@ -1,6 +1,7 @@
 package controller;
 
 
+import Exceptions.DatabaseNotFound;
 import Exceptions.ItemNotFoundException;
 import integration.Change;
 import integration.CustomerCatalog;
@@ -84,8 +85,9 @@ public class Controller {
  * @param ItemID
  * @param Amount
  * @return
+ * @throws DatabaseNotFound 
  */
-	public model.SaleDTO scanningItems(int ItemID, int Amount) throws ItemNotFoundException {
+	public model.SaleDTO scanningItems(int ItemID, int Amount) throws ItemNotFoundException, DatabaseNotFound {
 		/*Item item= new Item(ItemID,Amount);
 		item= ItemCatalogHandler.validateItem(item);
 		if(item.getPrice()==null) {
@@ -95,6 +97,9 @@ public class Controller {
 		return sale;*/ 
 		Item item;
 		try{
+		if(ItemID==600) {
+			throw new DatabaseNotFound();
+		}
 		item= new Item(ItemID,Amount);
 		item= ItemCatalogHandler.validateItem(item);
 		if(item.getPrice()==null) {
@@ -106,7 +111,12 @@ public class Controller {
 		}
 		sale.addItem(item);
 		} catch(ItemNotFoundException nullItem) {
-			nullItem.printStackTrace();
+			System.out.println("This message is the the service point: \n -------------------------------------- \n"
+					+nullItem.getMessage()+"\n -------------------------------");
+			//nullItem.printStackTrace();
+		} catch(DatabaseNotFound e) {
+			System.out.println("This message is the the service point:  \n -------------------------------------- \n"+e.getMessage()
+			+"\n -------------------------------");
 		}
 		
 		return new model.SaleDTO(sale); 
