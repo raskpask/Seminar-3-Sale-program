@@ -1,5 +1,7 @@
 package model;
 
+import java.util.*;
+
 import integration.Change;
 import integration.Item;
 /**
@@ -9,6 +11,7 @@ import integration.Item;
  */
 public class SaleDTO {
 private Item[] itemList;
+
 	
 	private int numberOfItems=0;
 
@@ -32,8 +35,9 @@ public SaleDTO(Sale sale) {
 	this.price= sale.getPrice();
 	this.change= sale.getValueOfChange();
 	this.totalPriceWithTaxes = sale.getValueOfTotalPriceWithTaxes();
-	
+	 
 }
+
 /**
  * Returns all the items in the sale
  * @return

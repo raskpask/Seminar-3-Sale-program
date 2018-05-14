@@ -6,6 +6,8 @@ import controller.Controller;
 import model.Amount;
 import model.Customer;
 import model.Sale;
+import model.SaleDTO;
+import model.SaleObserver;
 /**
  * Holds the all functions that the user can use and creates the controller.
  * @author molin
@@ -19,6 +21,7 @@ public class View {
  */
 	public View() {
 		controller = new Controller(); 
+		controller.addSaleObserver(new TotalRevenueView());
 	}
 	
 /**

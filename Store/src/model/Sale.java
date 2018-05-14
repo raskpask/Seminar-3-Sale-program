@@ -1,6 +1,9 @@
 package model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import integration.Change;
 import integration.ExternalAccountingSystemHandler;
 import integration.ExternalInventoryHandler;
@@ -14,6 +17,8 @@ import integration.Printer;
 public class Sale {
 
 	private Item[] itemList;
+	
+	private List<SaleObserver> observers = new ArrayList<>();
 	
 	private int numberOfItems=0;
 
@@ -49,6 +54,21 @@ public class Sale {
 	 */
 	public Item[] getItems() {
 		return this.itemList;
+	}
+	/**
+	 * Register observer. Any <code>Observer</code> that is passed to this object will be notified. 
+	 * @param observer The observer that will be registered.
+	 */
+	public void addObserver(SaleObserver observer) {
+			observers.add(observer);
+	}
+	/**
+	 * If something is changed notifies user.
+	 */
+	private void notifyObservers() {
+		for(SaleObserver observer : observers) {
+			observer.stateHasChanged();
+		}
 	}
 	/**
 	 * Returns is the sale has a discount or not.
@@ -138,6 +158,7 @@ public class Sale {
 				double priceOfItem=item.getPrice().getNumber()*item.getQuantity();
 				double currentPrice=this.price.getNumber();
 				this.price.setNumber(priceOfItem+currentPrice);
+				notifyObservers();
 			}
 		}
 	}
@@ -152,9 +173,7 @@ public class Sale {
 		double priceOfItem=item.getPrice().getNumber()*item.getQuantity();
 		double currentPrice=this.price.getNumber();
 		this.price.setNumber(priceOfItem+currentPrice);
-		//Sale sale= new Sale(this.itemList,this.discountVaild,this.price, this.change,this.totalPriceWithTaxes);
-		//return sale;
-		
+		notifyObservers();
 
 	}
 

@@ -2,6 +2,7 @@ package controller;
 
 
 import java.nio.channels.ShutdownChannelGroupException;
+import java.util.*;
 
 import Exceptions.DatabaseNotFound;
 import view.*;
@@ -20,6 +21,7 @@ import model.CashRegister;
 import model.Customer;
 
 import model.Sale;
+import model.SaleObserver;
 
 /**
  * The class that execute all the commands from the view.
@@ -45,6 +47,8 @@ public class Controller {
 	private CustomerCatalog customerCatalog;
 	
 	private ExternalAccountingSystemHandler externalAccountingSystemHandler;
+	
+	private List<SaleObserver> saleObserver= new ArrayList<>();
 /**
  * Makes the controller that starts other classes. Is called in the beginning.
  */
@@ -111,7 +115,7 @@ public class Controller {
 		}
 		if(sale.checkIfItemHasBeenAdded(item)) {
 			sale.increaseQuantity(item);
-			TotalRevenueView.showRunningTotalOnSideDisplay(this.sale);
+			
 			return new model.SaleDTO(sale);
 		}
 		sale.addItem(item);
@@ -122,7 +126,6 @@ public class Controller {
 			view.ErrorMessageHandler.showErrorMessage(e.getMessage());
 			view.ErrorLogHandler.makeLogMessage(e.getStackTrace().toString());
 		}
-		TotalRevenueView.showRunningTotalOnSideDisplay(this.sale);
 		return new model.SaleDTO(sale); 
 	}
 
@@ -136,7 +139,7 @@ public class Controller {
 		if (customer.getDiscount()) {
 			sale.addDiscount();
 		}
-		TotalRevenueView.showRunningTotalOnSideDisplay(this.sale);
+		
 		return new model.SaleDTO(sale);
 	}
 /**
@@ -145,7 +148,7 @@ public class Controller {
  */
 	public model.SaleDTO completeingSale() {
 		sale.getTotalPriceWithTaxes();
-		TotalRevenueView.showRunningTotalOnSideDisplay(this.sale);
+		
 		return new model.SaleDTO(sale);
 	}
 /**
@@ -156,6 +159,9 @@ public class Controller {
 		return new model.SaleDTO(sale);
 	}
 /**
- * 
+ * This observer will be notified when something has happened to the sale.
  */
+	public void addSaleObserver(SaleObserver totalRevenueView) {
+		saleObserver.add(totalRevenueView); 
+	}
 }
