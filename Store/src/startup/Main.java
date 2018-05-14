@@ -24,6 +24,7 @@ public static void main(String[] args) throws Exceptions.ItemNotFoundException, 
 	view.requestDiscount();
 	view.scanItems(8, 2);
 	view.scanItems(600,3);
+	view.scanItems(2,3);
 	view.completeSale();
 	view.pay(500, "SEK", "Cash"); 
 	

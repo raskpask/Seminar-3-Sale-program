@@ -1,7 +1,6 @@
 package view;
 
-import java.time.LocalTime;
-import java.time.format.FormatStyle;
+import java.util.Date;
 
 /**
  * This unit is responsible for showing the error to the user.
@@ -24,12 +23,11 @@ public class ErrorMessageHandler {
 		System.out.println(errorMessageBuilder);
 	}
 	
-	private static String createTime() {
-		/*LocalTime now= LocalTime.now();
-		TimeFormatter formatter = new TimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM);
-		return now.format(formatter);
-		*/
-		String randomTime="12:00";
-		return randomTime;
+/**
+ * 
+ * @return current time is returned
+ */
+	static String createTime() {
+		return new Date().toString();
 	}
 }
