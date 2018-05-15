@@ -34,7 +34,7 @@ public class View {
  * @throws DatabaseNotFound 
  */
 	public void scanItems(int itemID, int quantity) throws Exceptions.ItemNotFoundException, DatabaseNotFound {
-		System.out.println(controller.scanningItems(itemID,quantity));
+		System.out.println(controller.scanningItems(itemID,quantity)); 
 	}
 	/**
 	 * Create a new sale
