@@ -10,8 +10,12 @@ public interface SaleObserver {
 	 * 
 	 * @param saleDTO The sale that was updated.
 	 */
-	void newSale(model.SaleDTO saleDTO);
-
-	void stateHasChanged();
+	public void update(Amount totalRevenue);
+	
+	public void addObserver(SaleObserver observer);
+	
+	public void removeObserver(SaleObserver observer);
+	
+	public void notifyObservers();
 		
 }

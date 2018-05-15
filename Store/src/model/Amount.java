@@ -55,8 +55,8 @@ public class Amount {
 	 * prints the values of Amount, for debug
 	 */
 	public String toString() {
-		String str = "Number : "+ this.number;
-		return str; 
+		String str = "Number: "+ this.number;
+		return str;  
 	}
 /**
  * Define when two Amounts are the same.

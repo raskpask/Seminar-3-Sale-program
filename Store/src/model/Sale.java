@@ -65,11 +65,11 @@ public class Sale {
 	/**
 	 * If something is changed notifies user.
 	 */
-	private void notifyObservers() {
+	/*private void notifyObservers() {
 		for(SaleObserver observer : observers) {
-			observer.stateHasChanged();
+			observer.update(price);
 		}
-	}
+	}*/
 	/**
 	 * Returns is the sale has a discount or not.
 	 * @return
@@ -158,7 +158,6 @@ public class Sale {
 				double priceOfItem=item.getPrice().getNumber()*item.getQuantity();
 				double currentPrice=this.price.getNumber();
 				this.price.setNumber(priceOfItem+currentPrice);
-				notifyObservers();
 			}
 		}
 	}
@@ -173,8 +172,6 @@ public class Sale {
 		double priceOfItem=item.getPrice().getNumber()*item.getQuantity();
 		double currentPrice=this.price.getNumber();
 		this.price.setNumber(priceOfItem+currentPrice);
-		notifyObservers();
-
 	}
 
 /**

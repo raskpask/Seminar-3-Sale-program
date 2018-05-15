@@ -17,6 +17,7 @@ public class ExternalAccountingSystemHandler {
  */
 	public void storeSale(Sale sale) {
 		// some code for storeing a sale in database
+		sale.getAmountTotalPriceWithTaxes();
 	}
 
 }

@@ -22,6 +22,7 @@ import model.Customer;
 
 import model.Sale;
 import model.SaleObserver;
+import model.TotalRevenue;
 
 /**
  * The class that execute all the commands from the view.
@@ -48,6 +49,8 @@ public class Controller {
 	
 	private ExternalAccountingSystemHandler externalAccountingSystemHandler;
 	
+	private TotalRevenue totalRevenue;
+	
 	private List<SaleObserver> saleObserver= new ArrayList<>();
 /**
  * Makes the controller that starts other classes. Is called in the beginning.
@@ -59,6 +62,9 @@ public class Controller {
 	this.customerCatalog = new CustomerCatalog();
 	this.itemCatalogHandler = new ItemCatalogHandler();
 	this.externalAccountingSystemHandler = new ExternalAccountingSystemHandler();
+	this.totalRevenue = new TotalRevenue();
+	this.totalRevenue.addObserver(new TotalRevenue());
+	
 	
 	}
 /**
@@ -74,6 +80,9 @@ public class Controller {
 		externalInventoryHandler.storeItems(sale.getItems());
 		externalAccountingSystemHandler.storeSale(this.sale);
 		sale.getChange(paidAmount);
+		Amount newTotalRevenue= new Amount((this.sale.getAmountTotalPriceWithTaxes().getNumber())+ (totalRevenue.getTotalRevenueAmount().getNumber()),"SEK","");
+		totalRevenue.setTotalRevenueAmount(newTotalRevenue);
+		totalRevenue.notifyObservers();
 		return new model.SaleDTO(sale);
 	}
 /**
@@ -85,7 +94,6 @@ public class Controller {
 		Change change = new Change(price, price);// send null instead??
 		Amount totalPriceWithTaxes= new Amount(0,"SEK","Cash");
 		this.sale= new Sale	(itemList, false, price, change/*send null instead and make object later??*/, totalPriceWithTaxes);
-		TotalRevenueView.showRunningTotalOnSideDisplay(this.sale);
 	}
 	
 /**
@@ -96,13 +104,6 @@ public class Controller {
  * @throws DatabaseNotFound 
  */
 	public model.SaleDTO scanningItems(int ItemID, int Amount) throws ItemNotFoundException, DatabaseNotFound {
-		/*Item item= new Item(ItemID,Amount);
-		item= ItemCatalogHandler.validateItem(item);
-		if(item.getPrice()==null) {
-			throw new ItemNotFoundException(item);
-		}
-		sale.addItem(item);
-		return sale;*/ 
 		Item item;
 		try{
 		if(ItemID==600) {
@@ -155,13 +156,6 @@ public class Controller {
  * Returns the current sale info.
  */
 	public model.SaleDTO currentSaleInfo() {
-		TotalRevenueView.showRunningTotalOnSideDisplay(this.sale);
 		return new model.SaleDTO(sale);
-	}
-/**
- * This observer will be notified when something has happened to the sale.
- */
-	public void addSaleObserver(SaleObserver totalRevenueView) {
-		saleObserver.add(totalRevenueView); 
 	}
 }

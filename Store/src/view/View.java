@@ -16,12 +16,14 @@ import model.SaleObserver;
 public class View {
 
 	private Controller controller;
+	
 /**
  * initialize View and creates the controller
  */
 	public View() {
-		controller = new Controller(); 
-		controller.addSaleObserver(new TotalRevenueView());
+		controller = new Controller();
+		
+		 
 	}
 	
 /**
