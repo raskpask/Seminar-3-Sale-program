@@ -12,6 +12,10 @@ import model.SaleObserver;
 public class TotalRevenueView implements Observer {
 	
 	private Amount totalRevenue;
+	
+	public TotalRevenueView() {
+		this.totalRevenue= new Amount(0,"SEK","");
+	}
 	/**
 	 * shows the running total on the side display.
 	 * @param sale
