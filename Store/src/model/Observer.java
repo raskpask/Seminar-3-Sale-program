@@ -1,6 +1,4 @@
-package view;
-
-import model.Amount;
+package model;
 
 public interface Observer {
 /**

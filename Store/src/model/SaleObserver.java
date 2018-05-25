@@ -10,11 +10,11 @@ public interface SaleObserver {
 	 * 
 	 * @param saleDTO The sale that was updated.
 	 */
-	public void update(Amount totalRevenue);
+	//public void update(Amount totalRevenue);
 	
-	public void addObserver(SaleObserver observer);
+	public void addObserver(Observer observer);
 	
-	public void removeObserver(SaleObserver observer);
+	public void removeObserver(Observer observer);
 	
 	public void notifyObservers();
 		

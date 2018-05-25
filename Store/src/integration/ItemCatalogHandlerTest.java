@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Amount;
+import model.DatabaseNotFound;
+import model.ItemNotFoundException;
 /**
  * Tests the catalog class.
  * @author molin
@@ -16,9 +18,11 @@ class ItemCatalogHandlerTest {
 
 /**
  * Testing of validateItem method.
+ * @throws DatabaseNotFound 
+ * @throws ItemNotFoundException 
  */
 	@Test
-	void testValidateItem() {
+	void testValidateItem() throws ItemNotFoundException, DatabaseNotFound {
 		Item expectedItem= new Item(3, 1);
 		
 		Item item=ItemCatalogHandler.validateItem(expectedItem);

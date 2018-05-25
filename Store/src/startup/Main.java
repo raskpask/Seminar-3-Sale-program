@@ -1,9 +1,9 @@
 package startup;
 
-import Exceptions.DatabaseNotFound;
 import controller.Controller;
 import integration.ExternalSystemsCreator;
 import integration.Printer;
+import model.DatabaseNotFound;
 import view.View;
 /**
  * Mains class that is run when the system is started.
@@ -16,7 +16,7 @@ public class Main {
 	 * @throws ItemNotFoundException 
 	 * @throws DatabaseNotFound 
 	 */
-public static void main(String[] args) throws Exceptions.ItemNotFoundException, DatabaseNotFound {
+public static void main(String[] args) throws model.ItemNotFoundException, DatabaseNotFound {
 	//Printer printer = new Printer();
 	View view = new View();
 	view.newSale();

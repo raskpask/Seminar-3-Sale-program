@@ -1,10 +1,11 @@
 package view;
 
 
-import Exceptions.DatabaseNotFound;
 import controller.Controller;
 import model.Amount;
 import model.Customer;
+import model.DatabaseNotFound;
+import model.ItemNotFoundException;
 import model.Sale;
 import model.SaleDTO;
 import model.SaleObserver;
@@ -33,8 +34,17 @@ public class View {
  * @throws ItemNotFoundException 
  * @throws DatabaseNotFound 
  */
-	public void scanItems(int itemID, int quantity) throws Exceptions.ItemNotFoundException, DatabaseNotFound {
+	public void scanItems(int itemID, int quantity) throws model.ItemNotFoundException, DatabaseNotFound {
+		try{
 		System.out.println(controller.scanningItems(itemID,quantity)); 
+		}
+	 catch(ItemNotFoundException nullItem) {
+		view.ErrorMessageHandler.showErrorMessage(nullItem.getMessage());
+		view.ErrorLogHandler.makeLogMessage((String) nullItem.getStackTrace().toString());
+	} catch(DatabaseNotFound e) {
+		view.ErrorMessageHandler.showErrorMessage(e.getMessage());
+		view.ErrorLogHandler.makeLogMessage(e.getStackTrace().toString());
+	}
 	}
 	/**
 	 * Create a new sale

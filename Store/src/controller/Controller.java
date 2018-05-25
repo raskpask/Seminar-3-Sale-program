@@ -4,9 +4,7 @@ package controller;
 import java.nio.channels.ShutdownChannelGroupException;
 import java.util.*;
 
-import Exceptions.DatabaseNotFound;
 import view.*;
-import Exceptions.ItemNotFoundException;
 import integration.Change;
 import integration.CustomerCatalog;
 import integration.ExternalAccountingSystemHandler;
@@ -19,10 +17,12 @@ import model.Cash;
 import model.CashPayment;
 import model.CashRegister;
 import model.Customer;
-
+import model.DatabaseNotFound;
+import model.ItemNotFoundException;
 import model.Sale;
 import model.SaleObserver;
 import model.TotalRevenue;
+import se.kth.ood.daniel.duner.procesSale.view.TotalRevenueView;
 
 /**
  * The class that execute all the commands from the view.
@@ -51,19 +51,23 @@ public class Controller {
 	
 	private TotalRevenue totalRevenue;
 	
+	private TotalRevenueView totalRevenueView;
+	
 	private List<SaleObserver> saleObserver= new ArrayList<>();
 /**
  * Makes the controller that starts other classes. Is called in the beginning.
  */
 	public  Controller() {
+	this.totalRevenue = new TotalRevenue();
+	this.totalRevenueView = new TotalRevenueView();
+	totalRevenue.addObserver(totalRevenueView);
 	this.cashRegister= new CashRegister();
 	this.printer = new Printer();
 	this.externalInventoryHandler = new ExternalInventoryHandler();
 	this.customerCatalog = new CustomerCatalog();
 	this.itemCatalogHandler = new ItemCatalogHandler();
 	this.externalAccountingSystemHandler = new ExternalAccountingSystemHandler();
-	this.totalRevenue = new TotalRevenue();
-	this.totalRevenue.addObserver(new TotalRevenue());
+	
 	
 	
 	}
@@ -105,28 +109,14 @@ public class Controller {
  */
 	public model.SaleDTO scanningItems(int ItemID, int Amount) throws ItemNotFoundException, DatabaseNotFound {
 		Item item;
-		try{
-		if(ItemID==600) {
-			throw new DatabaseNotFound();
-		}
 		item= new Item(ItemID,Amount);
 		item= ItemCatalogHandler.validateItem(item);
-		if(item.getPrice()==null) {
-			throw new ItemNotFoundException(item);
-		}
 		if(sale.checkIfItemHasBeenAdded(item)) {
 			sale.increaseQuantity(item);
-			
 			return new model.SaleDTO(sale);
 		}
 		sale.addItem(item);
-		} catch(ItemNotFoundException nullItem) {
-			view.ErrorMessageHandler.showErrorMessage(nullItem.getMessage());
-			view.ErrorLogHandler.makeLogMessage((String) nullItem.getStackTrace().toString());
-		} catch(DatabaseNotFound e) {
-			view.ErrorMessageHandler.showErrorMessage(e.getMessage());
-			view.ErrorLogHandler.makeLogMessage(e.getStackTrace().toString());
-		}
+		
 		return new model.SaleDTO(sale); 
 	}
 

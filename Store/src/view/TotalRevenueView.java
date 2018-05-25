@@ -1,6 +1,7 @@
 package view;
 
 import model.Amount;
+import model.Observer;
 import model.Sale;
 import model.SaleObserver;
 

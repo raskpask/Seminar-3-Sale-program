@@ -17,11 +17,11 @@ public class TotalRevenue implements SaleObserver{
 	
 	private Amount totalRevenueAmount;
 	
-	private List<SaleObserver> observers;
+	private List<Observer> observers;
 	
 	public TotalRevenue() {
 		this.totalRevenueAmount = new Amount(0,"SEK","");
-		observers = new ArrayList<SaleObserver>();
+		observers = new ArrayList<Observer>();
 	}
 	/**
 	 * shows the running total on the side display.
@@ -34,32 +34,28 @@ public class TotalRevenue implements SaleObserver{
 			+ "\nThe side display ends here!--------------------------------------------------- \n");
 
 	}
-	@Override
-	public void update(Amount totalRevenue) {
-		this.totalRevenueAmount = totalRevenue;
-		printDisplay();
-	}
 	
 	public Amount getTotalRevenueAmount() {
 		return this.totalRevenueAmount;
 	}
+
 	@Override
-	public void addObserver(SaleObserver observer) {
-		observers.add(observer);
-		
-	}
-	@Override
-	public void removeObserver(SaleObserver observer) {
+	public void removeObserver(Observer observer) {
 		observers.remove(observer);
 		
 	}
 	@Override
 	public void notifyObservers() {
-		for (SaleObserver observer:observers) {
+		for (Observer observer:observers) {
 			observer.update(this.totalRevenueAmount);
 		}
 	}
 	public void setTotalRevenueAmount(Amount totalRevenueAmount) {
 		this.totalRevenueAmount = totalRevenueAmount;
+	}
+	@Override
+	public void addObserver(Observer observer) {
+		observers.add(observer);
+		
 	}
 }
